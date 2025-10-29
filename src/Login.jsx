@@ -1,3 +1,7 @@
+// /
+
+
+
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
@@ -11,63 +15,62 @@ export default function Login() {
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  // 🟩 CHANGED: make handleSubmit async to call backend API
+  const handleSubmit = async (e) => {
     e.preventDefault();
     let newErrors = {};
 
-
     // Username validation
-
     if (!username.trim()) {
       newErrors.username = "Username is required";
-      alert("Username is required");
     } else if (username.length < 5) {
       newErrors.username = "Username must be at least 5 characters";
-      alert("Username must be at least 3 characters");
     }
 
     // Password validation
     if (!password) {
       newErrors.password = "Password is required";
-      alert("Password is required");
-    } else if (password.length < 5) {
-      newErrors.password = "Password must be at least 3 characters";
-      alert("Password must be at least 6 characters");
+    } else if (password.length < 6) {
+      newErrors.password = "Password must be at least 6 characters";
     }
 
     setErrors(newErrors);
 
+    
     if (Object.keys(newErrors).length === 0) {
-      if (username === "admin" && password === "admin") {
-        alert(`✅ Login successful!\nWelcome ${username}`);
-        navigate("/maindashboard");
-      } else {
-        alert("❌ Invalid credentials. ");
+      try {
+        const response = await fetch("http://localhost:5000/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username, password }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          alert(`✅ ${data.message}`);
+          navigate("/maindashboard"); // successful login
+        } else {
+          alert(`❌ ${data.message}`);
+        }
+      } catch (error) {
+        alert("⚠️ Unable to connect to server. Please try again later.");
+        console.error("Login error:", error);
       }
     }
-
-
-
-    // If no errors -> success
-    // if (Object.keys(newErrors).length === 0) {
-    //   alert(`✅ Form submitted successfully!\nUsername: ${username}`);
-    //   navigate("/dashboard");
-    // }
   };
 
   return (
     <div className="container d-flex flex-column justify-content-center align-items-center">
-      {/* <h2 className="mb-4 text-primary fw-bold ">Welcome to, S&amp;P Finance</h2> */}
-
-      {/* Card */}
-      <div className="card shadow p-4 rounded" style={{ width: "350px" }}>
-
-        <img
+      <div className="login-card shadow p-4 rounded" style={{ width: "350px" }}>
+        <img 
           className="logo-circle"
+          // 🟩 CHANGED: fix image path
           src="src\assets\WhatsApp Image 2025-09-17 at 3.09.47 PM.png"
           alt="Logo"
         />
         <h4 className="login-text text-center mb-3">Login</h4>
+
         <form onSubmit={handleSubmit}>
           {/* Username */}
           <div className="mb-3">
@@ -124,18 +127,6 @@ export default function Login() {
             >
               Forgot Password?
             </button>
-
-            {/* <button
-              type="button"
-              className="btn google-btn d-flex align-items-center justify-content-center"
-            >
-              <img
-                src="https://img.icons8.com/color/48/000000/google-logo.png"
-                alt="Google logo"
-                className="google-icon"
-              />
-              <span className="btn-text">Login with Google</span>
-            </button> */}
           </div>
         </form>
       </div>
