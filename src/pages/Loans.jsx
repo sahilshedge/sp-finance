@@ -1,8 +1,22 @@
+import React from "react";
+import SearchBar from "../SearchBar";
+import BorrowersTable from "../BorrowersTable";
+
+
+
+
+
 function Loans() {
+
+
+
   return (
-  <>
-     <h2>Loans </h2>
-  </>
+    <>
+      <SearchBar/>
+      <BorrowersTable/>
+
+
+    </>
   )
 }
 export default Loans;

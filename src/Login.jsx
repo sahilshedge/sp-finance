@@ -36,7 +36,7 @@ export default function Login() {
 
     setErrors(newErrors);
 
-    
+
     if (Object.keys(newErrors).length === 0) {
       try {
         const response = await fetch("http://localhost:5000/login", {
@@ -47,12 +47,23 @@ export default function Login() {
 
         const data = await response.json();
 
+        // if (response.ok) {
+        //   alert(`✅ ${data.message}`);
+        //   navigate("/maindashboard"); // successful login
+        // } else {
+        //   alert(`❌ ${data.message}`);
+        // }
+
         if (response.ok) {
           alert(`✅ ${data.message}`);
-          navigate("/maindashboard"); // successful login
+          localStorage.setItem("isAuthenticated", "true"); // ✅ user logged in
+          navigate("/maindashboard");
         } else {
           alert(`❌ ${data.message}`);
         }
+
+
+
       } catch (error) {
         alert("⚠️ Unable to connect to server. Please try again later.");
         console.error("Login error:", error);
@@ -63,7 +74,7 @@ export default function Login() {
   return (
     <div className="container d-flex flex-column justify-content-center align-items-center">
       <div className="login-card shadow p-4 rounded" style={{ width: "350px" }}>
-        <img 
+        <img
           className="logo-circle"
           // 🟩 CHANGED: fix image path
           src="src\assets\WhatsApp Image 2025-09-17 at 3.09.47 PM.png"
