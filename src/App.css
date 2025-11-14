@@ -119,17 +119,17 @@ background-color: white;
 .card:hover {
   transform: scale(1.05);
 }
-.row{
+/* .row{
   width: 1200px;
   height: 1000px;
-}
+} */
 
-.container {
-  margin-right: 100px;
-  display: flex;
-  gap: 750px;
-  
+.dashboard-container {
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
+  
+
 .loans{
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
@@ -143,4 +143,86 @@ background-color: white;
 }
 .container {
   display: flex;
+}
+
+
+
+/* Dashboard layout spacing */
+.custom-gap {
+  --bs-gutter-x: 1.5rem; /* same horizontal spacing as gx-4 */
+  --bs-gutter-y: 0.8rem; /* smaller vertical spacing between rows */
+}
+
+.row { 
+  --bs-gutter-x: 1.5rem !important;
+  --bs-gutter-y: 1.5rem !important;
+}  
+
+.dashboard-card{
+  
+  min-width: 500px;           /* Increase height of each card */
+  font-size: 1.2rem;           /* Make text slightly bigger */
+  border-radius: 15px;         /* Smooth corners */
+  box-shadow: 15px 10px 20px rgba(0, 0, 0, 0.15);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Hover effect for a nice dashboard feel */
+.dashboard-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* Optional: increase icon size slightly for balance */
+.dashboard-card svg {
+  width: 36px;
+  height: 36px;
+}
+.charts{
+  height: 500px;
+}
+.buttons{
+  display: flex;
+  
+}
+.searchbar{
+  min-width: 400px;
+  height: 40px;
+  
+  
+}
+.active-loans{
+  width: 100px;
+  height: 40px;
+  margin-top: 15px;
+
+}
+.inactive-loans{
+   width: 100px;
+  height: 40px;
+  margin-top: 15px;
+
+}
+.upload{
+  width: 100px;
+  height: 40px;
+  margin-top: 15px;
+
+}
+.download{
+  width: 100px;
+  height: 40px;
+  margin-top: 15px;
+
+}
+.add-button{
+  display: flex;
+}
+.new-loan{
+  width: 225px;
+  height: 40px;
+  margin-top: 15px;
+}
+.buttons{
+  gap: 10px;
 }

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Table, Button, Pagination } from "react-bootstrap";
+import { Table, Button} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const BorrowersTable = () => {
@@ -12,6 +12,7 @@ const BorrowersTable = () => {
       interestRate: 2,
       interestAmount: 1000,
       outstanding: 42000,
+      status: "Active",
     },
     {
       id: 2,
@@ -21,6 +22,7 @@ const BorrowersTable = () => {
       interestRate: 1.5,
       interestAmount: 1200,
       outstanding: 70000,
+      status: "In Active",
     },
     {
       id: 3,
@@ -30,36 +32,28 @@ const BorrowersTable = () => {
       interestRate: 2.3,
       interestAmount: 1495,
       outstanding: 58000,
+      status: "Active",
     },
   ]);
 
   return (
-    <div className="container mt-4">
-      {/* Top bar with title + upload/download buttons */}
-      <div className="d-flex   align-items-center mb-3">
-        <h3 className="fw-bold">Borrowers List</h3>
-        <div>
-          <Button variant="primary" className="me-2">
-            <i className="bi bi-upload"></i> Upload
-          </Button>
-          <Button variant="success">
-            <i className="bi bi-download"></i> Download
-          </Button>
-        </div>
-      </div>
+    <div className="container d-flex justify-content-center flex-column ">
+
+
 
       {/* Table */}
-      <div className="table-responsive shadow-sm rounded">
+      <div className="table-responsive shadow-sm rounded table">
         <Table bordered hover className="align-middle mb-0">
           <thead className="table-dark text-center">
             <tr>
               <th>ID</th>
               <th>Borrower Name</th>
-              <th>Loan Amount (₹)</th>
-              <th>Disbursement Date</th>
-              <th>Interest Rate (%)</th>
-              <th>Interest Amount (₹)</th>
-              <th>Outstanding Amount (₹)</th>
+              <th>Loan AMT(₹)</th>
+              <th>Disbursement Dt</th>
+              <th>Interest Rate(%)</th>
+              <th>Interest Amt(₹)</th>
+              <th>Outstanding Amt(₹)</th>
+              <th>Status</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -73,7 +67,12 @@ const BorrowersTable = () => {
                 <td>{b.interestRate}</td>
                 <td>{b.interestAmount.toLocaleString()}</td>
                 <td>{b.outstanding.toLocaleString()}</td>
+                <td>{b.status.toLocaleString()}</td>
                 <td>
+                  <Button variant="info" size="sm" className="me-2 text-white">
+                    Details
+                  </Button>
+
                   <Button variant="warning" size="sm" className="me-2">
                     Edit
                   </Button>
@@ -86,19 +85,6 @@ const BorrowersTable = () => {
           </tbody>
         </Table>
       </div>
-
-      {/* Pagination */}
-      {/* <div className="d-flex justify-content-center mt-3">
-        <Pagination>
-          <Pagination.First />
-          <Pagination.Prev />
-          <Pagination.Item active>{1}</Pagination.Item>
-          <Pagination.Item>{2}</Pagination.Item>
-          <Pagination.Item>{3}</Pagination.Item>
-          <Pagination.Next />
-          <Pagination.Last />
-        </Pagination>
-      </div> */}
     </div>
   );
 };

@@ -19,7 +19,7 @@ function Header(){
     />
 
           {/* Brand Name */}
-          <h1 className="brand-title">S&P Finance</h1>
+          <h1 className="brand-title">SNP Finance</h1>
         </a>
       </div>
     </nav>

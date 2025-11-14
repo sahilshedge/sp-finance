@@ -29,7 +29,7 @@ db.connect((err) => {
 });
 
 
-// login page start
+// =====================login page=================================================
 
 // 🧩 Route: Register new user
 app.post("/register", async (req, res) => {
@@ -76,7 +76,7 @@ app.post("/login", (req, res) => {
   });
 });
 
-// login page end
+// ===============================login page=====================================================================
 
 
 

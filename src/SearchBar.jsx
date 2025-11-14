@@ -14,8 +14,8 @@ function SearchBar() {
         <>
             
                
-                <div className="container mt-3">
-                     <h2 className="loans">Loans</h2>
+                <div className="container mt-3 searchbar">
+                     
                     <div className="input-group">
                         <span className="input-group-text bg-light">
                             <FaSearch />
