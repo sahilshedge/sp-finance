@@ -8,7 +8,7 @@ import "./App.css";
 function InactiveButton() {
     return (
         <>
-            <Button variant="danger" className="me-2 inactive-loans">
+            <Button variant="danger" className="me-2 inactive-loanbtn">
                 Inactive
             </Button>
 

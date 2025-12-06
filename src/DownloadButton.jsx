@@ -8,8 +8,8 @@ import "./App.css";
 function DownloadButton() {
     return (
         <>
-           <Button variant="success download">
-            <i className="bi bi-download"></i> Download
+           <Button variant="success download-btn">
+            <i className=" bi bi-download" ></i> Download
           </Button>
 
         </>

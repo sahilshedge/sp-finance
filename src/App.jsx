@@ -56,7 +56,7 @@ import Reports from "./pages/Reports";
 import PaymentHistory from "./pages/PaymentHistory";
 import Settings from "./pages/Settings";
 import Logout from "./pages/Logout";
-import AddBorrower from "./AddBorrower";
+// import AddBorrower from "./AddBorrower";
 import ProtectedRoute from "./ProtectedRoute";
 
 function App() {
@@ -82,7 +82,7 @@ function App() {
           <Route path="payment-history" element={<PaymentHistory />} />
           <Route path="settings" element={<Settings />} />
           <Route path="logout" element={<Logout />} />
-          <Route path="add-borrower" element={<AddBorrower />} />
+          {/* <Route path="add-borrower" element={<AddBorrower />} /> */}
         </Route>
       </Routes>
     </Router>

@@ -157,14 +157,19 @@ background-color: white;
   --bs-gutter-x: 1.5rem !important;
   --bs-gutter-y: 1.5rem !important;
 }  
+.dashboard-cards{
+  display: flex;
+  gap: 20px;
+}
 
-.dashboard-card{
+.card{
   
-  min-width: 500px;           /* Increase height of each card */
-  font-size: 1.2rem;           /* Make text slightly bigger */
+  min-width: 300px;           /* Increase height of each card */
+  font-size: 50px;           /* Make text slightly bigger */
   border-radius: 15px;         /* Smooth corners */
   box-shadow: 15px 10px 20px rgba(0, 0, 0, 0.15);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
+  margin-left: 20px;
 }
 
 /* Hover effect for a nice dashboard feel */
@@ -191,14 +196,41 @@ background-color: white;
   
   
 }
+.total-loans{
+  width: auto;
+  height: 50px;
+  font-size: 30px;
+  font-weight: bold;
+
+}
 .active-loans{
+  width: auto;
+  height: 50px;
+  font-size: 30px;
+  font-weight: bold;
+
+}
+.inactive-loans{
+  width: auto;
+  height: 50px;
+  font-size: 30px;
+  font-weight: bold;
+
+ } 
+ .active-loanbtn{
   width: 100px;
   height: 40px;
   margin-top: 15px;
 
 }
-.inactive-loans{
-   width: 100px;
+.inactive-loanbtn{
+  width: 100px;
+  height: 40px;
+  margin-top: 15px;
+
+}
+.overdue-btn{
+  width: 100px;
   height: 40px;
   margin-top: 15px;
 
@@ -209,8 +241,8 @@ background-color: white;
   margin-top: 15px;
 
 }
-.download{
-  width: 100px;
+.download-btn{
+  width: 120px;
   height: 40px;
   margin-top: 15px;
 
@@ -225,4 +257,5 @@ background-color: white;
 }
 .buttons{
   gap: 10px;
+  margin-left: 10px;
 }

@@ -8,7 +8,7 @@ import "./App.css";
 function OverDue() {
     return (
         <>
-            <Button variant="success" className="me-2 active-loans" >
+            <Button variant="success" className="me-2 overdue-btn" >
                 Over Due
             </Button>
 

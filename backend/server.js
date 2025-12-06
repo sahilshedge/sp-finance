@@ -79,6 +79,114 @@ app.post("/login", (req, res) => {
 // ===============================login page=====================================================================
 
 
+// ======================== Add Borrower / Loan =============================
+
+app.post("/add-loan", (req, res) => {
+  const {
+    borrowerName,
+    borrowerAddress,
+    mobileNumber,
+    loanAmount,
+    disbursementDate,
+    interestRate,
+    interestAmount,
+    outstanding,
+    loanReferredBy,
+    penalty,
+    status,
+  } = req.body;
+
+  const q = `
+    INSERT INTO borrowers 
+    (name, borrowerAddress, mobileNumber, loanAmount, disbursementDate, interestRate, interestAmount, outstanding, loanReferredBy, penalty, status)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+  `;
+
+  const values = [
+    borrowerName,
+    borrowerAddress,
+    mobileNumber,
+    loanAmount,
+    disbursementDate,
+    interestRate,
+    interestAmount,
+    outstanding,
+    loanReferredBy || null,
+    penalty || 0,
+    status || "Active",
+  ];
+
+  db.query(q, values, (err, result) => {
+    if (err) {
+      console.log(err);
+      return res.status(500).json({ message: "Insert failed", error: err });
+    }
+    return res.status(201).json({
+      message: "Loan added successfully",
+      borrowerId: result.insertId,
+    });
+  });
+});
+
+app.get("/borrowers", (req, res) => {
+  db.query("SELECT * FROM borrowers", (err, results) => {
+    if (err) return res.status(500).json({ message: "Database error" });
+    return res.json(results);
+  });
+});
+
+// =====================================================Delete button===================================================================
+app.delete("/api/borrowers/:id", (req, res) => {
+  const borrowerId = req.params.id;
+
+  db.query("DELETE FROM borrowers WHERE id = ?", [borrowerId], (err, result) => {
+    if (err) {
+      console.error("Delete error:", err);
+      return res.status(500).json({ message: "Delete failed" });
+    }
+
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ message: "Borrower not found" });
+    }
+
+    return res.json({ message: "Borrower deleted successfully" });
+  });
+});
+
+
+// ================== edit Borrower / Loan ===========================
+app.put("/api/borrowers/:id", (req, res) => {
+  const borrowerId = req.params.id;
+  const {
+    name,
+    loanAmount,
+    interestRate,
+    disbursementDate,
+    outstanding,
+    status
+  } = req.body;
+
+  const q = `
+    UPDATE borrowers 
+    SET name=?, loanAmount=?, interestRate=?, disbursementDate=?, outstanding=?, status=?
+    WHERE id=?
+  `;
+
+  db.query(
+    q,
+    [name, loanAmount, interestRate, disbursementDate, outstanding, status, borrowerId],
+    (err, result) => {
+      if (err) {
+        console.error("Update Error:", err);
+        return res.status(500).json({ message: "Update failed" });
+      }
+
+      return res.json({ message: "Borrower updated successfully" });
+    }
+  );
+});
+
+
 
 // Start server
 const PORT = process.env.PORT || 5000;
